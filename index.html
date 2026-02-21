@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOB APPLICATION TRACKER</title>
+    <!-- daisy ui -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- tailwind css -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Outfit:wght@100..900&display=swap"
+        rel="stylesheet">
+
+
+</head>
+
+<body class="mx-auto py-[74px] px-[250px] bg-[#F8FAFC]">
+
+    <!-- Tracker section -->
+    <section>
+        <p class="text-[#002C5C] text-[48px] font-bold text ">Job Application Tracker</p>
+        <div class="grid grid-cols-3 gap-[22px]">
+
+            <div class=" py-[22px] px-[22px] rounded shadow ">
+                <p class="text-[18px] ">Total</p>
+
+                <h2 class="text-[28px] font-bold text-[#063c91]">8</h2>
+
+
+            </div>
+
+            <div class=" py-[22px] px-[22px] rounded shadow ">
+                <p class="text-[18px]">Interview</p>
+
+                <h2 class="text-[28px] text-[#10B981] font-bold">0</h2>
+
+
+            </div>
+            <div class=" py-[22px] px-[22px] rounded shadow ">
+                <p class="text-[18px]">Rejected</p>
+
+                <h2 class="text-[28px] text-[#EF4444] font-bold">0</h2>
+
+
+            </div>
+        </div>
+    </section>
+    <div class="h-0.5 w-full mt-9 bg-[#E6E7E9] my-4"></div>
+
+    <!-- JOB title section -->
+    <section>
+        <div class="grid grid-cols-2 mt-7 mb-3 ">
+            <p class="text-[#002C5C] text-[28px] font-bold text mb-2 ">Available Jobs</p>
+            <p class="text-[#64748B] mr-4 text-right text-[22px] font-medium ">8 Jobs</p>
+        </div>
+        <!-- job add -->
+
+        <div>
+            <div class="mb-4">
+                <button
+                    class="btn btn-outline btn-info py-4 text-[#64748B] border-none shadow  px-6 hover:text-white">All</button>
+
+                <button
+                    class="btn btn-outline btn-info py-4 px-6 text-[#64748B] border-none shadow  hover:text-white">Interview</button>
+
+                <button
+                    class="btn btn-outline btn-info py-4 px-6 text-[#64748B] border-none shadow hover:text-white">Rejected</button>
+            </div>
+
+
+            <div>
+                <div class="rounded shadow px-6 py-4       ">
+                    <div class="grid grid-cols-2 items-center">
+                        <div>
+                            <p class="text-[#002C5C] text-[24px] font-bold">Mobile First Corp</p>
+                            <p class="text-[#64748B] mb-4">React Native Developer</p>
+                        </div>
+
+                        <button class="justify-self-end hover:bg-slate-300 btn border-black">
+                            <img src="Trash.svg" alt="">
+                        </button>
+                    </div>
+                    <p class="text-[#64748B] mb-4 ">Remote
+                        •
+                        Full-time
+                        •
+                        $130,000 - $175,000</p>
+                    <p class="bg-[#EEF4FF] text-[#002C5C] py-3 px-3 w-36 font-medium mb-2"> NOT APPLIED</p>
+                    <p class="mb-4">Build cross-platform mobile applications using React Native. Work on products used
+                        by
+                        millions of
+                        users
+                        worldwide.</p>
+
+                    <div class="flex gap-4">
+                        <button class="btn btn-outline btn-success hover:text-white  text-[#10B981]">INTERVIEW</button>
+                        <button
+                            class="btn btn-outline btn-success border-[#EF4444]  hover:text-white hover:bg-[#EF4444] text-[#EF4444]">REJECTED
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+
+
+
+</body>
+
+</html>
