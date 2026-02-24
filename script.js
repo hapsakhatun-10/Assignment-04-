@@ -81,17 +81,90 @@ let jobs = [
     },
 ]
 
+const cartContainer = document.getElementById("cart-container");
+const totalElement = document.getElementById('total')
+const interviewCountElement = document.getElementById('interview')
+const rejectedCountElement = document.getElementById('rejected')
+const jobCountElement = document.getElementById('job-count')
 
 
 
 
+function getJobCard(job) {
+    return `
+        <div class="job-card rounded shadow px-6 py-4">
+
+            <div class="grid grid-cols-2 items-center">
+                <div class="bg-white">
+                    <p class=" company-name text-[#002C5C] text-[24px] font-bold">${job.title}</p>
+                    <p class=" job-position  text-[#64748B] mb-4">${job.role}</p>
+                </div>
+
+                <button class=" delete-btn justify-self-end hover:bg-slate-300 btn border-black">
+                    <img src="Trash.svg" alt="">
+                </button>
+            </div>
+
+            <p class="selery-range text-[#64748B] mb-4 ">${job.location} • ${job.type} • ${job.salaryRange}</p>
+            <p class="requirements mb-4">${job.details}</p>
+
+            <!-- STATUS SECTION -->
+            <div class="job-status">
+                <p class="status-text bg-[#EEF4FF] text-[#002C5C] py-3 px-3 w-36 font-medium mb-2 uppercase">${job.status.toUpperCase()}</p>
+                <button data-job-id='${job.id}' class="btn text-green-600 border-green-600 interview-btn">INTERVIEW</button>
+                <button data-job-id='${job.id}' class="btn text-red-600 border-red-600 reject-btn">REJECTED</button>
+            </div>
+        </div>
+    `
+}
 
 
+function updateJobList(status) {
+    let jobHtml = ''
 
+    if (!status) {
+        for (const job of jobs) {
+            jobHtml += getJobCard(job)
+        }
 
+        jobCountElement.innerText = ${ jobs.length } Jobs
+    } else {
+        for (let job of jobs) {
+            if (job.status === status) {
+                jobHtml += getJobCard(job)
+            }
+        }
 
+        jobCountElement.innerText = ${ getJobCountByStatus(status) } of ${ jobs.length } Jobs
+    }
 
+    if (jobHtml === '') {
+        jobHtml = `
+        <div class="flex justify-center items-center flex-col border p-6 border-slate-200">
+            <img src="empty-doc.svg" alt="" class="w-[100px] h-[100px]">
+            <p class="font-bold text-lg">No jobs available</p>
+            <p>Check back soon for new job opportunities</p>
+        </div>
+        `
+    }
 
+    cartContainer.innerHTML = jobHtml
+}
+
+function getJobCountByStatus(status) {
+    let count = 0;
+    for (let job of jobs) {
+        if (job.status === status) {
+            count++
+        }
+    }
+
+    return count;
+}
+
+// INITIAL
+totalElement.innerText = jobs.length
+updateJobList();
 
 
 
