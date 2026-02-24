@@ -100,7 +100,7 @@ function getJobCard(job) {
                     <p class=" job-position  text-[#64748B] mb-4">${job.role}</p>
                 </div>
 
-                <button class=" delete-btn justify-self-end hover:bg-slate-300 btn border-black">
+                <button data-job-id='${job.id}' class="delete-btn justify-self-end hover:bg-slate-300 btn border-black">                
                     <img src="Trash.svg" alt="">
                 </button>
             </div>
@@ -163,7 +163,8 @@ function getJobCountByStatus(status) {
 
 // INITIAL
 totalElement.innerText = jobs.length
-updateJobList();
+toggleStyle('all-btn')
+
 
 // JOB CARD BUTTON - INTERVIEW AND REJECT
 cartContainer.addEventListener("click", (event) => {
@@ -222,8 +223,26 @@ cartContainer.addEventListener("click", (event) => {
 
     }
 
-    // IF DELETE
-    // implement here...
+    // DELETE BUTTON
+
+    if (event.target.closest('.delete-btn')) {
+
+        const button = event.target.closest('.delete-btn')
+        const jobId = button.dataset.jobId
+
+
+        jobs = jobs.filter(job => job.id != jobId)
+
+
+        totalElement.innerText = jobs.length
+        interviewCountElement.innerText = getJobCountByStatus('Interview')
+        rejectedCountElement.innerText = getJobCountByStatus('Rejected')
+
+
+        updateJobList()
+    }
+
+
 
 })
 
