@@ -28,67 +28,61 @@
 
 </head>
 
-<body id="main" class="mx-auto py-[74px] px-[250px] bg-[#F8FAFC]">
+<body class="bg-[#F8FAFC] py-[20px] px-[50px]">
 
-    <!-- Tracker section -->
-    <section>
-        <p class="text-[#002C5C] text-[48px] font-bold text ">Job Application Tracker</p>
-        <div class="grid grid-cols-3 gap-[22px]">
+    <!-- Main container -->
+    <div class="py-6 px-4 md:px-20">
 
-            <div class=" py-[22px] px-[22px] rounded shadow ">
-                <p class="text-[18px] ">Total</p>
-                <h2 id="total" class="text-[28px] font-bold text-[#063c91]">0</h2>
+        <!-- Tracker section -->
+        <section class="mb-6">
+            <p class="text-[#002C5C] text-[36px] sm:text-[48px] font-bold mb-6">Job Application Tracker</p>
+            <div class="flex flex-col md:flex-row gap-4">
+                <div class="py-4 px-4 rounded shadow bg-white flex-1 text-center md:text-left">
+                    <p class="text-[18px]">Total</p>
+                    <h2 id="total" class="text-[22px] sm:text-[28px] font-bold text-[#063c91]">0</h2>
+                </div>
+                <div class="py-4 px-4 rounded shadow bg-white flex-1 text-center md:text-left">
+                    <p class="text-[18px]">Interview</p>
+                    <h2 id="interview" class="text-[22px] sm:text-[28px] text-[#10B981] font-bold">0</h2>
+                </div>
+                <div class="py-4 px-4 rounded shadow bg-white flex-1 text-center md:text-left">
+                    <p class="text-[18px]">Rejected</p>
+                    <h2 id="rejected" class="text-[22px] sm:text-[28px] text-[#EF4444] font-bold">0</h2>
+                </div>
+            </div>
+        </section>
+
+        <div class="h-0.5 w-full bg-[#E6E7E9] mb-6"></div>
+
+        <!-- JOB title and filter buttons -->
+        <main class="w-full">
+            <div class="flex flex-col mb-4">
+                <!-- Title -->
+                <div class="flex justify-between items-center mb-2">
+                    <p class="text-[#002C5C] text-[24px] sm:text-[28px] font-bold">Available Jobs</p>
+                    <p class="text-[#64748B] text-[18px] sm:text-[22px] font-medium" id="job-count"></p>
+                </div>
+
+                <!-- Filter Buttons (always horizontal, aligned left) -->
+                <div class="flex flex-row gap-2 mt-2">
+                    <button onclick="toggleStyle('all-btn')" id="all-btn"
+                        class="tab-btn btn py-3 px-4 bg-slate-950 text-black w-auto">All</button>
+                    <button onclick="toggleStyle('interview-btn')" id="interview-btn"
+                        class="tab-btn btn py-3 px-4 border-green-600 text-green-600 w-auto">Interview</button>
+                    <button onclick="toggleStyle('rejected-btn')" id="rejected-btn"
+                        class="tab-btn btn py-3 px-4 border-red-600 text-red-600 w-auto">Rejected</button>
+                </div>
             </div>
 
-            <div class=" py-[22px] px-[22px] rounded shadow ">
-                <p class="text-[18px]">Interview</p>
-                <h2 id="interview" class="text-[28px] text-[#10B981] font-bold">0</h2>
-            </div>
+            <!-- JOBS CONTAINER -->
+            <div id="cart-container" class="grid grid-cols-1 gap-4"></div>
+        </main>
 
-            <div class=" py-[22px] px-[22px] rounded shadow ">
-                <p class="text-[18px]">Rejected</p>
-                <h2 id="rejected" class="text-[28px] text-[#EF4444] font-bold">0</h2>
-            </div>
-        </div>
-    </section>
-
-
-    <div class="h-0.5 w-full mt-9 bg-[#E6E7E9] my-4"></div>
-
-
-
-    <!-- JOB title section -->
-    <main class="gap-3">
-
-        <div class="grid grid-cols-2 mt-7 mb-3 ">
-            <p class="text-[#002C5C] text-[28px] font-bold text mb-2 ">Available Jobs</p>
-            <p class="text-[#64748B] mr-4 text-right text-[22px] font-medium" id="job-count"></p>
-        </div>
-        <!-- job add -->
-
-        <div class="mb-4">
-            <button onclick="toggleStyle('all-btn')" id="all-btn" class=" btn py-4 px-6 tab-btn">
-                All
-            </button>
-
-            <button onclick="toggleStyle('interview-btn')" id="interview-btn" class="btn py-4 px-6 tab-btn">
-                Interview
-            </button>
-
-            <button onclick="toggleStyle('rejected-btn')" id="rejected-btn" class="btn py-4 px-6 tab-btn">
-                Rejected
-            </button>
-        </div>
-
-        <!-- JOBS CONTAINER -->
-        <div id="cart-container" class=" grid gap-7"></div>
-
-
-    </main>
+    </div>
 
     <script src="script.js"></script>
-
-
 </body>
+
+
 
 </html>
