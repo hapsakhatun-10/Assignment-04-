@@ -1,3 +1,6 @@
+
+// JOB CARTS
+
 let jobs = [
     {
         id: 0,
@@ -90,6 +93,7 @@ const rejectedCountElement = document.getElementById('rejected')
 const jobCountElement = document.getElementById('job-count')
 
 // FUNCTIONS
+
 function getJobCard(job) {
     return `
         <div class="job-card rounded shadow px-6 py-4">
@@ -245,6 +249,8 @@ cartContainer.addEventListener("click", (event) => {
 
 
 })
+
+// filter tab
 
 function toggleStyle(id) {
 

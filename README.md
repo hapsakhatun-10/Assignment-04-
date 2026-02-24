@@ -5,17 +5,15 @@
 5. What is the difference between preventDefault() and stopPropagation() methods?
 
 Answers:
+1.getElementById selects one element by its ID. getElementsByClassName selects all elements with the same class. querySelector selects the first element matching a CSS selector, and querySelectorAll selects all matching elements.
 
-1.In get element by id i can select a single element by id name ,In get elements class name i can select the similar class name elements.By query selector i can get its first element.and query selector all i can take the matching css class.
+2.I can create a new element using document.createElement(), for example: document.createElement('div'). Then you can add text or classes and insert it into the DOM with appendChild() or insertBefore().
 
-2.I can insert a new element in dom by using document.createElement().like document.createElement('div').
-3.when i click on a element it goes to its parent element.if i click on a button inside a div, the button’s click event will runs first, then the div’s click event runs.
+3.When I click an element, the event bubbles up to its parent elements. For example, if a button is inside a div, clicking the button triggers the button’s click event first, then the div’s click event.
 
-4.Event delegation is when i will put a single event listener on a parent element instead of adding listeners to each child. Then we check which child triggered the event. This is useful because it works for dynamic elements.
+4.Event delegation is when I put one event listener on a parent instead of each child. Then you check which child triggered the event. This works well for dynamic elements and reduces the number of listeners.
 
-5.preventDefault() stops the browser.and other stopPropagation() method stops event from bubbling to the parent element.
-
-
+5.preventDefault() stops the browser’s default action, like a link opening or a form submitting. stopPropagation() stops the event from bubbling up to parent elements, so parent handlers don’t run.
 
 
 
