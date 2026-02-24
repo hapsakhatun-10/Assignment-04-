@@ -166,8 +166,63 @@ function getJobCountByStatus(status) {
 totalElement.innerText = jobs.length
 updateJobList();
 
+// / JOB CARD BUTTON - INTERVIEW AND REJECT
+cartContainer.addEventListener("click", (event) => {
 
+    if (event.target.classList.contains('interview-btn')) {
+        const jobId = event.target.dataset.jobId;
 
+        const statusElement = event.target.closest('.job-status')
+        const statusTextElement = statusElement.querySelector(".status-text")
+        statusTextElement.innerText = 'Interview'
 
+        let targetJobIndex;
+        for (let i = 0; i < jobs.length; i++) {
+            if (jobs[i].id == jobId) {
+                targetJobIndex = i;
+                break;
+            }
+        }
+
+        jobs[targetJobIndex].status = "Interview"
+
+        rejectedCountElement.innerText = getJobCountByStatus('Rejected')
+        interviewCountElement.innerText = getJobCountByStatus('Interview')
+
+        const rejectBtn = document.getElementById('rejected-btn')
+        if (rejectBtn.classList.contains('bg-slate-950')) {
+            updateJobList('Rejected')
+        }
+
+    }
+
+    if (event.target.classList.contains('reject-btn')) {
+        const jobId = event.target.dataset.jobId;
+
+        const statusElement = event.target.closest('.job-status');
+        const statusTextElement = statusElement.querySelector('.status-text')
+        statusTextElement.innerText = 'REJECTED'
+
+        let targetJobIndex;
+        for (let i = 0; i < jobs.length; i++) {
+            if (jobs[i].id == jobId) {
+                targetJobIndex = i;
+                break;
+            }
+        }
+
+        jobs[targetJobIndex].status = "Rejected"
+
+        rejectedCountElement.innerText = getJobCountByStatus('Rejected')
+        interviewCountElement.innerText = getJobCountByStatus('Interview')
+
+        const interviewBtn = document.getElementById('interview-btn')
+        if (interviewBtn.classList.contains('bg-slate-950')) {
+            updateJobList('Interview')
+        }
+
+    }
+
+}
 
 
