@@ -81,15 +81,15 @@ let jobs = [
     },
 ]
 
+
+// ELEMENTS
 const cartContainer = document.getElementById("cart-container");
 const totalElement = document.getElementById('total')
 const interviewCountElement = document.getElementById('interview')
 const rejectedCountElement = document.getElementById('rejected')
 const jobCountElement = document.getElementById('job-count')
 
-
-
-
+// FUNCTIONS
 function getJobCard(job) {
     return `
         <div class="job-card rounded shadow px-6 py-4">
@@ -118,7 +118,6 @@ function getJobCard(job) {
     `
 }
 
-
 function updateJobList(status) {
     let jobHtml = ''
 
@@ -127,7 +126,7 @@ function updateJobList(status) {
             jobHtml += getJobCard(job)
         }
 
-        jobCountElement.innerText = ${ jobs.length } Jobs
+        jobCountElement.innerText = `${jobs.length} Jobs`
     } else {
         for (let job of jobs) {
             if (job.status === status) {
@@ -135,7 +134,7 @@ function updateJobList(status) {
             }
         }
 
-        jobCountElement.innerText = ${ getJobCountByStatus(status) } of ${ jobs.length } Jobs
+        jobCountElement.innerText = `${getJobCountByStatus(status)} of ${jobs.length} Jobs`
     }
 
     if (jobHtml === '') {
@@ -166,7 +165,7 @@ function getJobCountByStatus(status) {
 totalElement.innerText = jobs.length
 updateJobList();
 
-// / JOB CARD BUTTON - INTERVIEW AND REJECT
+// JOB CARD BUTTON - INTERVIEW AND REJECT
 cartContainer.addEventListener("click", (event) => {
 
     if (event.target.classList.contains('interview-btn')) {
@@ -223,6 +222,27 @@ cartContainer.addEventListener("click", (event) => {
 
     }
 
+    // IF DELETE
+    // implement here...
+
+})
+
+function toggleStyle(id) {
+
+    const buttons = document.querySelectorAll('.tab-btn');
+    for (let button of buttons) {
+        button.classList.remove('bg-slate-950', 'text-slate-50')
+    }
+
+    const buttonElement = document.getElementById(id);
+    buttonElement.classList.add('bg-slate-950', 'text-slate-50')
+
+    if (id === 'all-btn') {
+        updateJobList()
+    } else if (id === 'interview-btn') {
+        updateJobList('Interview')
+    } else if (id === 'rejected-btn') {
+        updateJobList('Rejected')
+    }
+
 }
-
-
