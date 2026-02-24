@@ -54,33 +54,35 @@
 
         <div class="h-0.5 w-full bg-[#E6E7E9] mb-6"></div>
 
-        <!-- JOB title and filter buttons -->
-        <main class="w-full">
-            <div class="flex flex-col mb-4">
-                <!-- Title -->
-                <div class="flex justify-between items-center mb-2">
-                    <p class="text-[#002C5C] text-[24px] sm:text-[28px] font-bold">Available Jobs</p>
-                    <p class="text-[#64748B] text-[18px] sm:text-[22px] font-medium" id="job-count"></p>
+        <!-- JOB title and filter buttons --><!-- Main container -->
+        <div class=" py-6 px-4 md:px-0">
+
+            <main class="w-full">
+                <div class="flex flex-col mb-4">
+                    <!-- Title -->
+                    <div class="flex justify-between items-center mb-2">
+                        <p class="text-[#002C5C] text-[24px] sm:text-[28px] font-bold">Available Jobs</p>
+                        <p class="text-[#64748B] text-[18px] sm:text-[22px] font-medium" id="job-count"></p>
+                    </div>
+
+                    <!-- Filter Buttons (always horizontal, aligned left) -->
+                    <div class="flex flex-row gap-2 mt-4">
+                        <button onclick="toggleStyle('all-btn')" id="all-btn"
+                            class="tab-btn btn py-3 px-4 bg-slate-950 text-black border-black w-auto">All</button>
+                        <button onclick="toggleStyle('interview-btn')" id="interview-btn"
+                            class="tab-btn btn py-3 px-4 border-green-600 text-green-600 w-auto">Interview</button>
+                        <button onclick="toggleStyle('rejected-btn')" id="rejected-btn"
+                            class="tab-btn btn py-3 px-4 border-red-600 text-red-600 w-auto">Rejected</button>
+                    </div>
                 </div>
 
-                <!-- Filter Buttons (always horizontal, aligned left) -->
-                <div class="flex flex-row gap-2 mt-4">
-                    <button onclick="toggleStyle('all-btn')" id="all-btn"
-                        class="tab-btn btn py-3 px-4 bg-slate-950 text-black border-black w-auto">All</button>
-                    <button onclick="toggleStyle('interview-btn')" id="interview-btn"
-                        class="tab-btn btn py-3 px-4 border-green-600 text-green-600 w-auto">Interview</button>
-                    <button onclick="toggleStyle('rejected-btn')" id="rejected-btn"
-                        class="tab-btn btn py-3 px-4 border-red-600 text-red-600 w-auto">Rejected</button>
-                </div>
-            </div>
+                <!-- JOBS CONTAINER -->
+                <div id="cart-container" class="grid grid-cols-1 gap-4"></div>
+            </main>
 
-            <!-- JOBS CONTAINER -->
-            <div id="cart-container" class="grid grid-cols-1 gap-4"></div>
-        </main>
+        </div>
 
-    </div>
-
-    <script src="script.js"></script>
+        <script src="script.js"></script>
 </body>
 
 

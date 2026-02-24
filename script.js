@@ -117,20 +117,24 @@ function getJobCard(job) {
 }
 
 function updateJobList(status) {
-    let jobHtml = ''
+    let jobHtml = '';
+    let jobsToShow = [];
+
     if (!status) {
-        for (const job of jobs) {
-            jobHtml += getJobCard(job)
-        }
-        jobCountElement.innerText = `${jobs.length} Jobs`
+
+        jobsToShow = jobs;
+        jobCountElement.innerText = `${jobs.length} Jobs`;
     } else {
-        for (let job of jobs) {
-            if (job.status === status) {
-                jobHtml += getJobCard(job)
-            }
-        }
-        jobCountElement.innerText = `${getJobCountByStatus(status)} of ${jobs.length} Jobs`
+
+        jobsToShow = jobs.filter(job => job.status === status);
+        jobCountElement.innerText = `${jobsToShow.length} of ${jobs.length} Jobs`;
     }
+
+
+    for (const job of jobsToShow) {
+        jobHtml += getJobCard(job);
+    }
+
 
     if (jobHtml === '') {
         jobHtml = `
@@ -139,9 +143,10 @@ function updateJobList(status) {
             <p class="font-bold text-lg">No jobs available</p>
             <p>Check back soon for new job opportunities</p>
         </div>
-        `
+        `;
     }
-    cartContainer.innerHTML = jobHtml
+
+    cartContainer.innerHTML = jobHtml;
 }
 
 function getJobCountByStatus(status) {
@@ -157,81 +162,70 @@ totalElement.innerText = jobs.length
 toggleStyle('all-btn')
 
 // JOB CARD BUTTON - INTERVIEW, REJECT, DELETE
+
 cartContainer.addEventListener("click", (event) => {
 
-    // INTERVIEW
-    if (event.target.classList.contains('interview-btn')) {
-        const jobId = event.target.dataset.jobId;
-        const statusElement = event.target.closest('.job-status');
-        const statusTextElement = statusElement.querySelector('.status-text');
+    // DELETE BUTTON
+    const deleteBtn = event.target.closest('.delete-btn');
+    if (deleteBtn) {
+        const jobId = parseInt(deleteBtn.dataset.jobId);
 
-        // Update job array
-        let targetJobIndex;
-        for (let i = 0; i < jobs.length; i++) {
-            if (jobs[i].id == jobId) { targetJobIndex = i; break; }
-        }
-        jobs[targetJobIndex].status = "Interview";
+        // Remove job from array
+        jobs = jobs.filter(job => job.id !== jobId);
 
         // Update counts
-        rejectedCountElement.innerText = getJobCountByStatus('Rejected');
-        interviewCountElement.innerText = getJobCountByStatus('Interview');
-
-        // Reset styles
-        statusTextElement.style.backgroundColor = '#EEF4FF';
-        statusTextElement.style.color = '#002C5C';
-        statusTextElement.style.border = 'none';
-
-        // Apply green style
-        statusTextElement.innerText = 'INTERVIEW';
-        statusTextElement.style.backgroundColor = '#FFFFFF';
-        statusTextElement.style.color = '#16a34a';
-        statusTextElement.style.border = '1px solid #16a34a';
-    }
-
-    // REJECTED
-    if (event.target.classList.contains('reject-btn')) {
-        const jobId = event.target.dataset.jobId;
-        const statusElement = event.target.closest('.job-status');
-        const statusTextElement = statusElement.querySelector('.status-text');
-
-        // Update job array
-        let targetJobIndex;
-        for (let i = 0; i < jobs.length; i++) {
-            if (jobs[i].id == jobId) { targetJobIndex = i; break; }
-        }
-        jobs[targetJobIndex].status = "Rejected";
-
-        // Update counts
-        rejectedCountElement.innerText = getJobCountByStatus('Rejected');
-        interviewCountElement.innerText = getJobCountByStatus('Interview');
-
-        // Reset styles
-        statusTextElement.style.backgroundColor = '#EEF4FF';
-        statusTextElement.style.color = '#002C5C';
-        statusTextElement.style.border = 'none';
-
-        // Apply red style
-        statusTextElement.innerText = 'REJECTED';
-        statusTextElement.style.backgroundColor = '#FEE2E2';
-        statusTextElement.style.color = '#B91C1C';
-        statusTextElement.style.border = '1px solid #B91C1C';
-    }
-
-    // DELETE
-    if (event.target.closest('.delete-btn')) {
-        const button = event.target.closest('.delete-btn');
-        const jobId = button.dataset.jobId;
-
-        jobs = jobs.filter(job => job.id != jobId);
-
         totalElement.innerText = jobs.length;
         interviewCountElement.innerText = getJobCountByStatus('Interview');
         rejectedCountElement.innerText = getJobCountByStatus('Rejected');
 
-        updateJobList();
+        // Determine current filter tab
+        let currentFilter = null;
+        if (document.getElementById('interview-btn').classList.contains('bg-slate-950')) currentFilter = 'Interview';
+        else if (document.getElementById('rejected-btn').classList.contains('bg-slate-950')) currentFilter = 'Rejected';
+
+        updateJobList(currentFilter);
+        return;
+    }
+
+    // INTERVIEW BUTTON
+    if (event.target.classList.contains('interview-btn')) {
+        const jobId = parseInt(event.target.dataset.jobId);
+        const targetJob = jobs.find(job => job.id === jobId);
+        targetJob.status = "Interview";
+
+        // Update counts
+        totalElement.innerText = jobs.length;
+        interviewCountElement.innerText = getJobCountByStatus('Interview');
+        rejectedCountElement.innerText = getJobCountByStatus('Rejected');
+
+        let currentFilter = null;
+        if (document.getElementById('interview-btn').classList.contains('bg-slate-950')) currentFilter = 'Interview';
+        else if (document.getElementById('rejected-btn').classList.contains('bg-slate-950')) currentFilter = 'Rejected';
+
+        updateJobList(currentFilter);
+    }
+
+    // REJECT BUTTON
+    if (event.target.classList.contains('reject-btn')) {
+        const jobId = parseInt(event.target.dataset.jobId);
+        const targetJob = jobs.find(job => job.id === jobId);
+        targetJob.status = "Rejected";
+
+        // Update counts
+        totalElement.innerText = jobs.length;
+        interviewCountElement.innerText = getJobCountByStatus('Interview');
+        rejectedCountElement.innerText = getJobCountByStatus('Rejected');
+
+        let currentFilter = null;
+        if (document.getElementById('interview-btn').classList.contains('bg-slate-950')) currentFilter = 'Interview';
+        else if (document.getElementById('rejected-btn').classList.contains('bg-slate-950')) currentFilter = 'Rejected';
+
+        updateJobList(currentFilter);
     }
 
 });
+
+
 
 
 function toggleStyle(id) {
@@ -240,15 +234,13 @@ function toggleStyle(id) {
     // Reset all buttons to default: white bg, black text
     buttons.forEach(button => {
         button.classList.remove('bg-slate-950', 'text-slate-50');
-        button.classList.add('bg-white', 'text-black'); // All buttons now have white bg + black text
+        button.classList.add('bg-white', 'text-black');
     });
 
-    // Make the clicked button active: black bg, white text
     const clickedButton = document.getElementById(id);
     clickedButton.classList.remove('bg-white', 'text-black');
     clickedButton.classList.add('bg-slate-950', 'text-slate-50');
 
-    // Update job list
     if (id === 'all-btn') updateJobList();
     else if (id === 'interview-btn') updateJobList('Interview');
     else if (id === 'rejected-btn') updateJobList('Rejected');
