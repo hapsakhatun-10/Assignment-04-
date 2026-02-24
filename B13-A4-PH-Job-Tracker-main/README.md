@@ -81,3 +81,96 @@
 
 1. GitHub Repository Link: 
 2. Live Site Link: 
+
+
+
+
+
+
+
+```html
+<div class="job-card rounded shadow px-6 py-4">
+
+                <div class="grid grid-cols-2 items-center">
+                    <div>
+                        <p class=" company-name text-[#002C5C] text-[24px] font-bold">Mobile First Corp</p>
+                        <p class=" job-position  text-[#64748B] mb-4">React Native Developer</p>
+                    </div>
+
+                    <button class=" delete-btn justify-self-end hover:bg-slate-300 btn border-black">
+                        <img src="Trash.svg" alt="">
+                    </button>
+                </div>
+
+                <p class="selery-range text-[#64748B] mb-4 ">Remote • Full-time • $130,000 - $175,000</p>
+                <p class="requirements mb-4">Build cross-platform mobile applications using React Native. Work on
+                    products used by
+                    millions of users worldwide.</p>
+
+                <!-- STATUS SECTION -->
+                <div class="job-status">
+                    <p class="status-text bg-[#EEF4FF] text-[#002C5C] py-3 px-3 w-36 font-medium mb-2">NOT APPLIED</p>
+                    <button class="btn text-green-600 border-green-600">INTERVIEW</button>
+                    <button class="btn text-red-600 border-red-600">REJECTED</button>
+                </div>
+            </div>
+
+            <!-- 2nd -->
+
+
+            <div class="job-card rounded shadow px-6 py-4">
+
+                <div class="grid grid-cols-2 items-center">
+                    <div class="bg-white">
+                        <p class=" company-name text-[#002C5C] text-[24px] font-bold">Google compamy</p>
+                        <p class=" job-position  text-[#64748B] mb-4">React Native Developer</p>
+                    </div>
+
+                    <button class=" delete-btn justify-self-end hover:bg-slate-300 btn border-black">
+                        <img src="Trash.svg" alt="">
+                    </button>
+                </div>
+
+                <p class="selery-range text-[#64748B] mb-4 ">Remote • Full-time • $130,000 - $175,000</p>
+                <p class="requirements mb-4">Build cross-platform mobile applications using React Native. Work on
+                    products used by
+                    millions of users worldwide.</p>
+
+                <!-- STATUS SECTION -->
+                <div class="job-status">
+                    <p class="status-text bg-[#EEF4FF] text-[#002C5C] py-3 px-3 w-36 font-medium mb-2">NOT APPLIED</p>
+                    <button class="btn text-green-600 border-green-600">INTERVIEW</button>
+                    <button class="btn text-red-600 border-red-600">REJECTED</button>
+                </div>
+            </div>
+
+
+            <!-- 3rd -->
+
+
+            <div class="job-card rounded shadow px-6 py-4">
+
+                <div class="grid grid-cols-2 items-center">
+                    <div>
+                        <p class=" company-name text-[#002C5C] text-[24px] font-bold">Mobile First Corp</p>
+                        <p class=" job-position  text-[#64748B] mb-4">React Native Developer</p>
+                    </div>
+
+                    <button class=" delete-btn justify-self-end hover:bg-slate-300 btn border-black">
+                        <img src="Trash.svg" alt="">
+                    </button>
+                </div>
+
+                <p class="selery-range text-[#64748B] mb-4 ">Remote • Full-time • $130,000 - $175,000</p>
+                <p class="requirements mb-4">Build cross-platform mobile applications using React Native. Work on
+                    products used by
+                    millions of users worldwide.</p>
+
+                <!-- STATUS SECTION -->
+                <div class="job-status">
+                    <p class="status-text bg-[#EEF4FF] text-[#002C5C] py-3 px-3 w-36 font-medium mb-2">NOT APPLIED</p>
+                    <button class="btn text-green-600 border-green-600">INTERVIEW</button>
+                    <button class="btn text-red-600 border-red-600">REJECTED</button>
+                </div>
+            </div>
+```
